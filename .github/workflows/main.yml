@@ -1,1 +1,14 @@
+name: Workflow Basico
 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  saludo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Mensaje de prueba
+        run: echo "Hola desde GitHub Actions"
