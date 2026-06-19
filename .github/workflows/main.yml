@@ -1,4 +1,4 @@
-name: Validar index.html
+name: Validar Archivos
 
 on:
   push:
@@ -6,18 +6,17 @@ on:
       - main
 
 jobs:
-  verificar-archivo:
+  validar:
     runs-on: ubuntu-latest
 
     steps:
       - name: Descargar repositorio
         uses: actions/checkout@v4
 
-      - name: Verificar existencia de index.html
+      - name: Verificar archivos requeridos
         run: |
-          if [ -f index.html ]; then
-            echo " index.html existe"
-          else
-            echo " index.html no existe"
-            exit 1
-          fi
+          test -f index.html || (echo " Falta index.html" && exit 1)
+          test -f css/style.css || (echo "Falta css/style.css" && exit 1)
+          test -f js/script.js || (echo " Falta js/script.js" && exit 1)
+
+          echo "✅ Todos los archivos existen"
