@@ -1,12 +1,16 @@
-name: Validar Archivos
+name: CI Validacion Landing Page
 
 on:
   push:
     branches:
       - main
 
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  validar:
+  validar-estructura:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,7 +20,8 @@ jobs:
       - name: Verificar archivos requeridos
         run: |
           test -f index.html || (echo " Falta index.html" && exit 1)
-          test -f css/style.css || (echo "Falta css/style.css" && exit 1)
+          test -f css/style.css || (echo " Falta css/style.css" && exit 1)
           test -f js/script.js || (echo " Falta js/script.js" && exit 1)
+          test -f README.md || (echo " Falta README.md" && exit 1)
 
-          echo "✅ Todos los archivos existen"
+          echo " Todos los archivos existen"
