@@ -1,4 +1,4 @@
-name: Workflow Basico
+name: Workflow Push Main
 
 on:
   push:
@@ -6,9 +6,9 @@ on:
       - main
 
 jobs:
-  saludo:
+  prueba:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Mensaje de prueba
-        run: echo "Hola desde GitHub Actions"
+      - name: Mostrar mensaje
+        run: echo "Se detectó un push en la rama main"
