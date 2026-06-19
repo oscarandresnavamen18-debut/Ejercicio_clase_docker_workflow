@@ -1,4 +1,4 @@
-name: Workflow Push Main
+name: Validar index.html
 
 on:
   push:
@@ -6,9 +6,18 @@ on:
       - main
 
 jobs:
-  prueba:
+  verificar-archivo:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Mostrar mensaje
-        run: echo "Se detectó un push en la rama main"
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Verificar existencia de index.html
+        run: |
+          if [ -f index.html ]; then
+            echo " index.html existe"
+          else
+            echo " index.html no existe"
+            exit 1
+          fi
